@@ -30,7 +30,7 @@ Export all tables
 
 shorthand
 
-> `php artisan csv:export -af`
+> `php artisan csv:export -a`
 
 Export all tables with `force` option.
 > `php artisan csv:export -af`
