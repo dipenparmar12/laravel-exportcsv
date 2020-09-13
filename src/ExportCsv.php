@@ -85,7 +85,14 @@ class ExportCsv
 
     protected function writeCsvHeading($file_handler, $table)
     {
-        $column_names = array_keys(DB::connection()->getDoctrineSchemaManager()->listTableColumns($table));
+        /// Doctrine DBAL Enum issue resolver
+        /// Unknown database type enum, MySQL57Platform may not support it #3161
+        $conn = DB::connection()->getDoctrineSchemaManager();
+        $conn->getDatabasePlatform()->registerDoctrineTypeMapping('enum', 'string');
+        /// Ref:1 https://github.com/doctrine/dbal/issues/3161
+        /// Ref:2 https://github.com/laravel/framework/issues/1186#issuecomment-17541553
+
+        $column_names = array_keys($conn->listTableColumns($table));
         return fputcsv($file_handler, $column_names);
     }
 
