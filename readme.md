@@ -24,16 +24,14 @@ Example
 
 > `php artisan csv:export tables=users,posts,comments`
 
+
 Export all tables
+> `php artisan csv:export`
 
-> `php artisan csv:export -all-table`
-
-shorthand
-
-> `php artisan csv:export -a`
 
 Export all tables with `force` option.
 > `php artisan csv:export --force`
+
 
 ## Change log
 
